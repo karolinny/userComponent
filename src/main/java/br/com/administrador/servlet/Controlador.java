@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.administrador.soap.Usuario;
 import br.com.usuario.negocio.ComponenteDeNegocio;
 
-
 /**
  * Servlet implementation class Controlador
  */
-@WebServlet("/Controlador")
+@WebServlet("/controlador")
 public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,9 +42,19 @@ public class Controlador extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		ComponenteDeNegocio componenteDeNegocio = new ComponenteDeNegocio();
-		Usuario usuario = componenteDeNegocio.getUsuario(
-				request.getParameter("tif"), request.getParameter("token"));
-		request.setAttribute("usuario", usuario);
+		String tif = request.getParameter("tif");
+		String token = request.getParameter("token");
+		Usuario usuario = componenteDeNegocio.getUsuario(tif, token);
+		if (usuario == null) {
+			request.setAttribute("mensagem", "Usuario não encontrado!");
+		} else {
+			request.setAttribute("mensagem", "Usuario encontrado!");
+			request.setAttribute("usuario", usuario);
+		}
+
+		request.getRequestDispatcher("/resultado.jsp").forward(request,
+				response);
+
 	}
 
 }

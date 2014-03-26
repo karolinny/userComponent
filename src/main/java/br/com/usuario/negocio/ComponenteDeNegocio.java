@@ -11,7 +11,7 @@ public class ComponenteDeNegocio {
 		consumidorDoComponentAdmin = new ConsumidorDoComponentAdmin();
 	}
 
-	public Usuario getUsuario(String token, String tif) {
+	public Usuario getUsuario(String tif, String token) {
 		if (validaTempoDoToken(token))
 			return consumidorDoComponentAdmin.buscaUsuarioPorTif(tif);
 		else
@@ -19,7 +19,7 @@ public class ComponenteDeNegocio {
 	}
 
 	private boolean validaTempoDoToken(String token) {
-		return false;
+		return true;
 	}
 
 }
