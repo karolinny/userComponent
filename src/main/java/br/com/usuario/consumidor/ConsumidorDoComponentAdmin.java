@@ -1,11 +1,9 @@
 package br.com.usuario.consumidor;
 
-import br.com.administrador.soap.IntegrationUserComponent;
-import br.com.administrador.soap.IntegrationUserComponentImplService;
-import br.com.administrador.soap.Usuario;
+
 
 public class ConsumidorDoComponentAdmin {
-
+/*
 	private IntegrationUserComponentImplService service;
 
 	public Usuario buscaUsuarioPorTif(String tif) {
@@ -17,5 +15,5 @@ public class ConsumidorDoComponentAdmin {
 		} catch (Exception e) {
 			return null;
 		}
-	}
+	}*/
 }

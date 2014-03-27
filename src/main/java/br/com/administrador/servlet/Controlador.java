@@ -1,5 +1,6 @@
 package br.com.administrador.servlet;
 
+import br.com.usuario.data.ConnectionFactory;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.administrador.soap.Usuario;
 import br.com.usuario.negocio.ComponenteDeNegocio;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Servlet implementation class Controlador
@@ -44,9 +47,9 @@ public class Controlador extends HttpServlet {
 		ComponenteDeNegocio componenteDeNegocio = new ComponenteDeNegocio();
 		String tif = request.getParameter("tif");
 		String token = request.getParameter("token");
-		Usuario usuario = componenteDeNegocio.getUsuario(tif, token);
+	/*	Usuario usuario = componenteDeNegocio.getUsuario(tif, token);
 		if (usuario == null) {
-			request.setAttribute("mensagem", "Usuario não encontrado!");
+			request.setAttribute("mensagem", "Usuario nï¿½o encontrado!");
 		} else {
 			request.setAttribute("mensagem", "Usuario encontrado!");
 			request.setAttribute("usuario", usuario);
@@ -55,6 +58,14 @@ public class Controlador extends HttpServlet {
 		request.getRequestDispatcher("/resultado.jsp").forward(request,
 				response);
 
-	}
+	}*/
+                 
+        ConnectionFactory con = new ConnectionFactory();
+            try {
+                System.out.println(con.getConnection());
+            } catch (SQLException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
 }
